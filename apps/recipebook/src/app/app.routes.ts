@@ -13,7 +13,7 @@ export const appRoutes: Route[] = [
   {
     path: 'inventory',
     loadChildren: () =>
-      loadRemoteModule('inventory', './Routes').then((m) => m.remoteRoutes),
+      loadRemoteModule('inventory', './Routes').then((m) => m.appRoutes),
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

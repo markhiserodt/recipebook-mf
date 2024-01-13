@@ -13,7 +13,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "recipebookMf",
+            "prefix": "inv",
             "style": "camelCase"
           }
         ],
@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "recipebook-mf",
+            "prefix": "inv",
             "style": "kebab-case"
           }
         ]

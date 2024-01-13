@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "inventory/Routes": [
-        "apps/inventory/src/app/remote-entry/entry.routes.ts"
+        "apps/inventory/src/app/app.routes.ts"
       ]
     }
   },

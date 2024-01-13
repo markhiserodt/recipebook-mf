@@ -1,9 +1,7 @@
 import { Route } from '@angular/router';
+import { InventoryComponent } from './components/inventory/inventory.component';
 
 export const appRoutes: Route[] = [
-  {
-    path: '',
-    loadChildren: () =>
-      import('./remote-entry/entry.routes').then((m) => m.remoteRoutes),
-  },
+  { path: '', component: InventoryComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
