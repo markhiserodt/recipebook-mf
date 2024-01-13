@@ -64,7 +64,8 @@
           "buildTarget": "recipebook:build:production"
         },
         "development": {
-          "buildTarget": "recipebook:build:development"
+          "buildTarget": "recipebook:build:development",
+          "proxyConfig": "apps/recipebook/proxy.conf.js"
         }
       },
       "defaultConfiguration": "development"

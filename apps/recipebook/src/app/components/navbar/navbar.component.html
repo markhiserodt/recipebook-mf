@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand">Recipe Book</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <div class="navbar-nav">
+        <a routerLink="/" [ngClass]="route==='/' ? 'active' : ''" class="nav-link cursor-pointer">Home</a>
+        <a routerLink="/recipes" [ngClass]="route==='/recipes' ? 'active' : ''" class="nav-link cursor-pointer">Recipes</a>
+        <a routerLink="/foods" [ngClass]="route==='/foods' ? 'active' : ''" class="nav-link cursor-pointer">Ingredients</a>
+        <a routerLink="/foodGroups" [ngClass]="route==='/foodGroups' ? 'active' : ''" class="nav-link cursor-pointer">Food Groups</a>
+        <a routerLink="/inventory" [ngClass]="route==='/inventory' ? 'active' : ''" class="nav-link cursor-pointer">Inventory</a>
+      </div>
+    </div>
+  </div>
+</nav>
