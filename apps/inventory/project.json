@@ -2,7 +2,7 @@
   "name": "inventory",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "recipebook-mf",
+  "prefix": "inv",
   "sourceRoot": "apps/inventory/src",
   "tags": [],
   "targets": {
