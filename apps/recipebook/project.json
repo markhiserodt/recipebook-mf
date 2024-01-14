@@ -23,7 +23,7 @@
         "styles": ["apps/recipebook/src/styles.scss"],
         "scripts": [],
         "customWebpackConfig": {
-          "path": "apps/recipebook/webpack.config.ts"
+          "path": "apps/recipebook/webpack.prod.config.ts"
         }
       },
       "configurations": {
