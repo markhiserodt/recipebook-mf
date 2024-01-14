@@ -54,5 +54,5 @@ jobs:
         with:
           app-name: 'recipebook-mf'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A1B5A5793B374433975DEFFD0B60F41F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_14FCB36B3EC14431B79169344DC07966 }}
           package: .
