@@ -32,7 +32,8 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "dist/apps/recipebook" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
-          app_build_command: "npx nx run-many -t build:production"
+          app_build_command: "npx nx run recipebook:build:production"
+          config_file_location: /assets
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
