@@ -24,7 +24,7 @@ jobs:
       - run: npx nx run-many -t build
 
       - name: Zip artifact for deployment
-        run: zip recipebook.zip ./dist/* -r
+        run: zip recipebook.zip ./dist/apps/recipebook/* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
