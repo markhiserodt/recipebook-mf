@@ -55,4 +55,4 @@ jobs:
           app-name: 'recipebook-ui'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_14FCB36B3EC14431B79169344DC07966 }}
-          package: ./dist/apps/recipebook/
+          package: .
