@@ -1,6 +1,11 @@
 import { setRemoteDefinitions } from '@nx/angular/mf';
+import { environment } from './environments/environment';
 
-fetch('/assets/module-federation.manifest.json')
+const moduleFederationManifest = environment.production 
+  ? '/assets/module-federation.prod.manifest.json' : 
+    '/assets/module-federation.manifest.json'
+
+fetch(moduleFederationManifest)
   .then((res) => res.json())
   .then((definitions) => setRemoteDefinitions(definitions))
   .then(() => import('./bootstrap').catch((err) => console.error(err)));

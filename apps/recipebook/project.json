@@ -44,10 +44,6 @@
             {
               "replace": "apps/recipebook/src/environments/environment.ts",
               "with": "apps/recipebook/src/environments/environment.prod.ts"
-            },
-            {
-              "replace": "apps/recipebook/src/assets/module-federation.manifest.json",
-              "with": "apps/recipebook/src/assets/module-federation.prod.manifest.json"
             }
           ],
           "outputHashing": "all"
