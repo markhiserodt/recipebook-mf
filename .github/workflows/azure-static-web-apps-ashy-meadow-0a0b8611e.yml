@@ -33,7 +33,7 @@ jobs:
           output_location: "dist/apps/recipebook" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
           app_build_command: "npx nx run recipebook:build:production"
-          config_file_location: /assets
+          config_file_location: apps/recipebook/src/assets
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
