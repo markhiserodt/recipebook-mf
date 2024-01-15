@@ -40,6 +40,12 @@
               "maximumError": "4kb"
             }
           ],
+          "fileReplacements": [
+            {
+              "replace": "apps/inventory/src/environments/environment.ts",
+              "with": "apps/inventory/src/environments/environment.prod.ts"
+            }
+          ],
           "outputHashing": "all",
           "customWebpackConfig": {
             "path": "apps/inventory/webpack.prod.config.ts"
