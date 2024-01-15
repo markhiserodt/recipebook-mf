@@ -1,9 +1,75 @@
-<div class="rb-black">
-  <h2>Inventory</h2>
+<div class="d-flex align-items-center justify-content-center mt-5">
+  <div class="d-flex flex-column text-center">
+    <h2>Inventory</h2>
+    <label>A way to keep track of inventory!</label>
+  </div>
+</div>
 
-  <div class="d-flex align-items-center justify-content-center mt-5">
-    <div class="d-flex flex-column text-center">
-      <label>A way to keep track of inventory!</label>
+<div class="d-flex m-3">
+  <div style="width: 18em;">
+    <label for="inventoryName" class="form-label">Item</label>
+    <input [(ngModel)]="inventoryName" class="form-control" id="inventoryName" type="text" placeholder="Bread, Milk, Eggs ...">
+  </div>
+
+  <div class="ms-3" style="width: 6em;">
+    <label for="inventoryQuantity" class="form-label">Quantity</label>
+    <input [(ngModel)]="inventoryQuantity" class="form-control" id="inventoryQuantity" type="text" placeholder="0">
+  </div>
+
+  <div class="d-flex align-items-end ms-3">
+    <button class="btn btn-primary" (click)="addInventory(inventoryName, inventoryQuantity)">Add Item</button>
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of inventory(); let index = $index; track item.id) {
+      <tr>
+        <th scope="row">{{item.id}}</th>
+        <td scope="row">{{item.name}}</td>
+        <td scope="row">{{item.quantity}}</td>
+        <td scope="row" class="d-flex">
+          <button (click)="editInventory(item)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editInventoryModal">
+            Edit
+          </button>
+          <button class="btn btn-danger ms-3" (click)="deleteInventory(item.id, index)">Delete</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<div class="modal fade" id="editInventoryModal" tabindex="-1" aria-labelledby="editInventoryModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      @if (inventoryEdit) {
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="editFoodModal">Edit Item</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div style="width: 18em;">
+            <label for="inventoryNameEdit" class="form-label">Item</label>
+            <input [(ngModel)]="inventoryEdit.name" class="form-control" id="inventoryNameEdit" type="text" value="{{inventoryEdit.name}}">
+          </div>
+          <div style="width: 18em;">
+            <label for="inventoryQuantityEdit" class="form-label">Quantity</label>
+            <input [(ngModel)]="inventoryEdit.quantity" class="form-control" id="inventoryQuantityEdit" type="text" value="{{inventoryEdit.quantity}}">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button #closeEditInventoryModalButton type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button (click)="updateInventory(inventoryEdit)" type="button" class="btn btn-primary">Save</button>
+        </div>
+      }
     </div>
   </div>
 </div>
