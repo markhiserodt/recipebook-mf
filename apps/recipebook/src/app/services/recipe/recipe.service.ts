@@ -18,13 +18,29 @@ export class RecipeService {
     this.getRecipes();
   }
   
-  // addComment(recipeComment: RecipeCommentRequest): Observable<void> {
-  //   return this.http.post<void>(`${environment.apiUrl + 'api/recipe/comment'}`, recipeComment);
-  // }
-
   addComment(recipeComment: RecipeCommentRequest): Observable<void> {
-    return this.http.post<void>(`https://pkc-6vz38.westus2.azure.confluent.cloud/kafka/v3/clusters/lkc-z6qmdz/topics/recipe_comments/records`, recipeComment);
+    return this.http.post<void>(`${environment.apiUrl + 'api/recipe/addComment'}`, recipeComment);
   }
+
+  // addComment(recipeComment: RecipeCommentRequest): Observable<void> {
+  //   const request = {
+  //     partition_id: 0,
+  //     headers: [
+  //       {
+  //           name: "__TypeId__",
+  //           value: "cmVjaXBlYm9vay5lbnRpdHkuUmVjaXBlQ29tbWVudA=="
+  //       }
+  //     ],
+  //     value: {
+  //       type: "JSON",
+  //       data: {
+  //         comment: recipeComment.comment,
+  //         recipeId: recipeComment.recipeId
+  //       }
+  //     }
+  //   };
+  //   return this.http.post<void>(environment.kafkaApiUrl, request);
+  // }
 
   addRecipe(recipeRequest: RecipeRequest): Observable<Recipe> {
     return this.http.post<Recipe>(`${environment.apiUrl + 'api/recipe'}`, recipeRequest);

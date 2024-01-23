@@ -1,11 +1,12 @@
-import { Component, ElementRef, Signal, ViewChild, inject } from '@angular/core';
-import { take } from 'rxjs';
+import { Component, ElementRef, OnInit, Signal, ViewChild, WritableSignal, inject } from '@angular/core';
+import { Observable, take } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { FoodService } from '../../services/food/food.service';
 import { Food } from '../../models/food.model';
 import { FoodRequest } from '../../models/food-request.model';
 import { FoodGroup } from '../../models/food-group.model';
 import { FoodGroupService } from '../../services/food-group/food-group.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'rb-food',
@@ -14,18 +15,25 @@ import { FoodGroupService } from '../../services/food-group/food-group.service';
   templateUrl: './food.component.html',
   styleUrl: './food.component.scss'
 })
-export class FoodComponent {
+export class FoodComponent implements OnInit {
   foodService = inject(FoodService);
   foodGroupService = inject(FoodGroupService);
+  activatedRoute = inject(ActivatedRoute);
 
   @ViewChild('closeEditFoodModalButton') closeEditFoodModalButton?: ElementRef;
 
-  foods: Signal<Food[]> = this.foodService.foods.asReadonly();
+  foods: Signal<Food[]> = this.foodService.foods;
   foodGroups: Signal<FoodGroup[]> = this.foodGroupService.foodGroups.asReadonly();
 
   foodName = '';
   foodGroupId = 0;
   foodEdit?: Food;
+
+  ngOnInit(): void {
+    (this.activatedRoute.data as Observable<{ foods: WritableSignal<Food[]> }>).subscribe(({ foods }) => {
+      this.foods = foods;
+    });
+  }
 
   addFood(name: string, foodGroupId: number): void {
     const foodRequest: FoodRequest = {

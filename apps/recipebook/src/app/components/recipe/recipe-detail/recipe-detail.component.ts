@@ -36,6 +36,7 @@ export class RecipeDetailComponent implements OnInit {
     this.recipeService.addComment(recipeComment).pipe(take(1)).subscribe({
       next: () => {
         this.recipe.comments.push(recipeComment);
+        this.comment = '';
       }
     });
   }
