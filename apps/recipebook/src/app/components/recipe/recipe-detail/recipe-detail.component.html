@@ -1,0 +1,39 @@
+<nav class="mt-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item cursor-pointer"><a routerLink="../">Recipes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{recipe.name}}</li>
+  </ol>
+</nav>
+
+<h2>{{recipe.name}}</h2>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    Ingredients
+  </div>
+  <ul class="list-group list-group-flush">
+    @for (food of recipe.foods; track recipe.id) {
+      <li class="list-group-item">{{food.name}}</li>
+    }
+  </ul>
+</div>
+
+<h4 class="pt-3">Comments - {{recipe.comments.length}}</h4>
+
+@for (comment of recipe.comments; track comment) {
+  <div class="card my-3" style="width: 36rem;">
+    <div class="card-body">
+      <h5 class="card-title">Anonymous User</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Now</h6>
+      <p class="card-text">{{comment.comment}}</p>
+    </div>
+  </div>
+}
+
+<div class="my-3" style="width: 36rem;">
+  <textarea class="form-control" id="comment" rows="3" [(ngModel)]="comment" placeholder="Add a comment..."></textarea>
+</div>
+
+<div class="d-flex justify-content-end" style="width: 36rem;">
+  <button class="btn btn-primary" (click)="addComment(comment)">Add Comment</button>
+</div>

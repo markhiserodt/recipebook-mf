@@ -7,11 +7,12 @@ import { FoodService } from '../../services/food/food.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RecipeRequest } from '../../models/recipe-request.model';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'rb-recipe',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './recipe.component.html',
   styleUrl: './recipe.component.scss'
 })
@@ -30,12 +31,8 @@ export class RecipeComponent {
   recipeEdit?: Recipe;
 
   editFood(selectedFood: Food): void {
-    let index = -1;
-    this.recipeEdit!.foods.forEach((food, i) => {
-      if (food.id === selectedFood.id) {
-        index = i;
-        return;
-      }
+    const index = this.recipeEdit!.foods.findIndex((food) => {
+      return food.id === selectedFood.id;
     });
     if (index > -1) {
       this.recipeEdit!.foods.splice(index, 1);

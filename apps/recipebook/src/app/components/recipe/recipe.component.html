@@ -65,7 +65,8 @@
           }
         </td>
         <td scope="row" class="d-flex">
-          <button (click)="editRecipe(recipe)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRecipeModal">
+          <button class="btn btn-primary" routerLink="./{{recipe.id}}">View</button>
+          <button (click)="editRecipe(recipe)" type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#editRecipeModal">
             Edit
           </button>
           <button class="btn btn-danger ms-3" (click)="deleteRecipe(recipe.id, index)">Delete</button>
