@@ -1,12 +1,11 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { CommonModule } from "@angular/common";
+import { Component, OnInit, inject } from "@angular/core";
+import { RouterOutlet, Router, NavigationEnd } from "@angular/router";
 
 @Component({
-  selector: 'inv-root',
+  selector: 'account-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

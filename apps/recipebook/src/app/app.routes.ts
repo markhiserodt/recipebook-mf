@@ -13,11 +13,10 @@ export const appRoutes: Route[] = [
   { path: 'foods', component: FoodComponent, resolve: { foods: FoodResolver } },
   { path: 'foodGroups', component: FoodGroupComponent },
   { path: 'recipes', component: RecipeComponent },
-  { path: 'recipes/:id', component: RecipeDetailComponent, resolve: { recipe: RecipeDetailResolver } },
   {
-    path: 'inventory',
-    loadChildren: () =>
-      loadRemoteModule('inventory', './Routes').then((m) => m.appRoutes),
+    path: 'recipes/:id', component: RecipeDetailComponent, resolve: { recipe: RecipeDetailResolver },
   },
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  { path: 'inventory', loadChildren: () => loadRemoteModule('inventory', './Routes').then((m) => m.appRoutes)},
+  { path: 'account', loadChildren: () => loadRemoteModule('account', './Routes').then((m) => m.appRoutes)},
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
