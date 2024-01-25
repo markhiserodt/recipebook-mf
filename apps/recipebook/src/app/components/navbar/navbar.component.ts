@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { GraphProfile, UserService } from '@recipebook-mf/services';
+import { AccountInfo } from '@azure/msal-browser';
+import { UserService } from '@recipebook-mf/services';
 
 @Component({
   selector: 'rb-navbar',
@@ -15,8 +16,8 @@ export class NavbarComponent implements OnInit {
   private userService = inject(UserService);
   private changeDetectorRef = inject(ChangeDetectorRef);
 
-  private profile$ = this.userService.profile.asReadonly();
-  get profile(): GraphProfile { return this.profile$(); }
+  private account$ = this.userService.account.asReadonly();
+  get account(): AccountInfo | null { return this.account$(); }
 
   route = '';
 
@@ -26,6 +27,10 @@ export class NavbarComponent implements OnInit {
         this.route = event.urlAfterRedirects;
       }
     });
+
+    setTimeout(() => {
+      this.changeDetectorRef.detectChanges();
+    }, 0)
 
     setTimeout(() => {
       this.changeDetectorRef.detectChanges();

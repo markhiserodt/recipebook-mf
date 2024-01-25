@@ -21,10 +21,6 @@ export class UserService {
       filter((status: InteractionStatus) => status === InteractionStatus.None))
       .subscribe(() => {
         this.account.set(this.authService.instance.getActiveAccount());
-        if (this.account()) {
-          this.initProfile();
-        }
-        console.log(this.account());
     });
 
     this.msalBroadcastService.msalSubject$.pipe(
@@ -50,7 +46,6 @@ export class UserService {
   initProfile(): void {
     this.http.get<GraphProfile>('https://graph.microsoft.com/v1.0/me').subscribe((profile: GraphProfile) => {
       this.profile.set(profile);
-      console.log(profile);
     });
   }
 

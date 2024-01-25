@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { UserService } from '@recipebook-mf/services';
 
 @Component({
   selector: 'account-home',
@@ -11,12 +10,5 @@ import { UserService } from '@recipebook-mf/services';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
-  private userService = inject(UserService);
-
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.userService.initProfile();
-    }, 2000);
-  }
+export class HomeComponent {
 }
