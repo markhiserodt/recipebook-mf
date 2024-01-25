@@ -1,10 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit, inject } from "@angular/core";
+import { RouterModule } from "@angular/router";
 import { GraphProfile, UserService } from "@recipebook-mf/services";
 
 @Component({
   selector: 'account-login',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 }) 
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.changeDetectorRef.detectChanges();
-    }, 1000)
+    }, 2000)
   }
 
   login(): void {

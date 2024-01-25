@@ -1,21 +1,24 @@
-<div class="account-module p-3">
+<div class="d-flex">
   <h3>Profile</h3>
-
-  <div class="card" style="width: 64em;">
-    <div class="card-header">
-      Microsoft Graph Api Data
-    </div>
-    <ul class="list-group list-group-horizontal">
-      <li class="list-group-item" style="width: 16em;">Display Name</li>
-      <li class="list-group-item fw-bold flex-fill">{{profile.displayName}}</li>
-    </ul>
-    <ul class="list-group list-group-horizontal">
-      <li class="list-group-item" style="width: 16em;">User Principal Name</li>
-      <li class="list-group-item fw-bold flex-fill">{{profile.userPrincipalName}}</li>
-    </ul>
-    <ul class="list-group list-group-horizontal">
-      <li class="list-group-item" style="width: 16em;">Id</li>
-      <li class="list-group-item fw-bold flex-fill">{{profile.id}}</li>
-    </ul>
+  <div class="ms-auto">
+    <button class="btn btn-primary" (click)="logout()">Logout</button>
   </div>
+</div>
+
+<div class="card" style="width: 64em;">
+  <div class="card-header">
+    Microsoft Graph Api Data
+  </div>
+  <ul class="list-group list-group-horizontal">
+    <li class="list-group-item" style="width: 16em;">Display Name</li>
+    <li class="list-group-item fw-bold flex-fill">{{profile.displayName}}</li>
+  </ul>
+  <ul class="list-group list-group-horizontal">
+    <li class="list-group-item" style="width: 16em;">User Principal Name</li>
+    <li class="list-group-item fw-bold flex-fill">{{profile.userPrincipalName}}</li>
+  </ul>
+  <ul class="list-group list-group-horizontal">
+    <li class="list-group-item" style="width: 16em;">Id</li>
+    <li class="list-group-item fw-bold flex-fill">{{profile.id}}</li>
+  </ul>
 </div>

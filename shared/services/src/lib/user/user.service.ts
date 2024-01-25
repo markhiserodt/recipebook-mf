@@ -24,6 +24,7 @@ export class UserService {
         if (this.account()) {
           this.initProfile();
         }
+        console.log(this.account());
     });
 
     this.msalBroadcastService.msalSubject$.pipe(
@@ -42,9 +43,14 @@ export class UserService {
     }
   }
 
+  logout(): void {
+    this.authService.logoutRedirect();
+  }
+
   initProfile(): void {
     this.http.get<GraphProfile>('https://graph.microsoft.com/v1.0/me').subscribe((profile: GraphProfile) => {
       this.profile.set(profile);
+      console.log(profile);
     });
   }
 
