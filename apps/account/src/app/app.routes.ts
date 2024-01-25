@@ -4,9 +4,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MsalGuard } from '@azure/msal-angular';
 
 export const appRoutes: Route[] = [
-  { path: '', component: LoginComponent,
-    children: [
-      { path: 'profile', component: ProfileComponent, canActivate: [MsalGuard] }
-    ]
-  }
+  { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [MsalGuard] },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];

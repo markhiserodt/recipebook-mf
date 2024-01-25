@@ -7,7 +7,7 @@ export const environment = {
     redirect: 'http://localhost:4200'
   },
   graph: {
-      uri: 'https://graph.microsoft.com/v1.0/me',
-      scopes: ['user.read']
+    uri: 'https://graph.microsoft.com/v1.0/me',
+    scopes: ['user.read']
   }
 }

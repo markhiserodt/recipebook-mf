@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { UserService } from '@recipebook-mf/services';
 
 @Component({
   selector: 'rb-navbar',
@@ -11,6 +12,11 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   private router = inject(Router);
+  private userService = inject(UserService);
+  private changeDetectorRef = inject(ChangeDetectorRef);
+
+  account = this.userService.account.asReadonly();
+  profile = this.userService.profile.asReadonly();
   route = '';
 
   ngOnInit(): void {
@@ -19,5 +25,15 @@ export class NavbarComponent implements OnInit {
         this.route = event.urlAfterRedirects;
       }
     });
+
+    setTimeout(() => {
+      this.userService.initProfile();
+      this.changeDetectorRef.detectChanges();
+    }, 1000)
   }
+
+  login(): void {
+    this.userService.login();
+  }
+
 }

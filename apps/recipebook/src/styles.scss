@@ -3,3 +3,33 @@
   background-color: beige;
   border: red 1px solid
 }
+
+.fab {
+  display: inline-block;
+  border-radius: 50%;
+  font-size: 2em;
+  line-height: 2em;
+  min-width: 2em;
+  width: 2em;
+  min-height: 2em;
+  height: 2em;
+  text-align: center;
+}
+
+.fab-sm {
+  display: inline-block;
+  border-radius: 50%;
+  font-size: 1.2em;
+  line-height: 2em;
+  min-width: 2em;
+  width: 2em;
+  min-height: 2em;
+  height: 2em;
+  text-align: center;
+  background-color: var(--bs-primary);
+  color: white;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
