@@ -21,7 +21,9 @@ export class UserService {
       filter((status: InteractionStatus) => status === InteractionStatus.None))
       .subscribe(() => {
         this.account.set(this.authService.instance.getActiveAccount());
-        this.initProfile();
+        if (this.account()) {
+          this.initProfile();
+        }
     });
 
     this.msalBroadcastService.msalSubject$.pipe(

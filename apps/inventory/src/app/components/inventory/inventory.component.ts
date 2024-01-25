@@ -4,6 +4,7 @@ import { InventoryService } from '../../services/inventory.service';
 import { InventoryRequest } from '../../models/inventory-request.model';
 import { take } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { GraphProfile, UserService } from '@recipebook-mf/services';
 
 @Component({
   selector: 'inv-inventory',
@@ -14,6 +15,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class InventoryComponent {
   inventoryService = inject(InventoryService);
+  userService = inject(UserService);
+
+  private profile$ = this.userService.profile.asReadonly();
+  get profile(): GraphProfile { return this.profile$(); }
 
   @ViewChild('closeEditInventoryModalButton') closeEditInventoryModalButton?: ElementRef;
   

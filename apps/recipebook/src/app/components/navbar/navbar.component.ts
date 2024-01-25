@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { UserService } from '@recipebook-mf/services';
+import { GraphProfile, UserService } from '@recipebook-mf/services';
 
 @Component({
   selector: 'rb-navbar',
@@ -15,9 +15,9 @@ export class NavbarComponent implements OnInit {
   private userService = inject(UserService);
   private changeDetectorRef = inject(ChangeDetectorRef);
 
-  account = this.userService.account.asReadonly();
-  profile = this.userService.profile.asReadonly();
-  
+  private profile$ = this.userService.profile.asReadonly();
+  get profile(): GraphProfile { return this.profile$(); }
+
   route = '';
 
   ngOnInit(): void {
@@ -28,9 +28,8 @@ export class NavbarComponent implements OnInit {
     });
 
     setTimeout(() => {
-      this.userService.initProfile();
       this.changeDetectorRef.detectChanges();
-    }, 1000)
+    }, 2000)
   }
 
   login(): void {

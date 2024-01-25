@@ -1,0 +1,9 @@
+
+@if (profile.displayName) {
+  <div class="d-flex align-items-center justify-content-center">
+    <label class="cursor-pointer pe-2">Hello, {{profile.displayName}}</label>
+    <label class="fab-sm cursor-pointer" routerLink="./profile">{{profile.displayName[0].toUpperCase()}}</label>
+  </div>
+} @else {
+  <button class="btn btn-primary" (click)="login()">Login</button>
+}
