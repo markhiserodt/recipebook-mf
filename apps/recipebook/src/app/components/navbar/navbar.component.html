@@ -10,7 +10,9 @@
         <a routerLink="/recipes" [ngClass]="route.indexOf('/recipes') > -1 ? 'active' : ''" class="nav-link cursor-pointer">Recipes</a>
         <a routerLink="/foods" [ngClass]="route.indexOf('/foods') > -1 ? 'active' : ''" class="nav-link cursor-pointer">Ingredients</a>
         <a routerLink="/foodGroups" [ngClass]="route.indexOf('/foodGroups') > -1 ? 'active' : ''" class="nav-link cursor-pointer">Food Groups</a>
-        <a routerLink="/inventory" [ngClass]="route.indexOf('/inventory') > -1 ? 'active' : ''" class="nav-link cursor-pointer">Inventory</a>
+        @if (isInventoryFeatureEnabled()) {
+          <a routerLink="/inventory" [ngClass]="route.indexOf('/inventory') > -1 ? 'active' : ''" class="nav-link cursor-pointer">Inventory</a>
+        }
       </div>
       <div class="d-flex flex-fill justify-content-end">
         @if (account && account.name) {

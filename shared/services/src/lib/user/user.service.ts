@@ -13,21 +13,27 @@ export class UserService {
   private authService = inject(MsalService);
   private msalBroadcastService = inject(MsalBroadcastService);
 
-  readonly profile = signal<GraphProfile>({});
-  readonly account = signal<AccountInfo | null>(null);
+  readonly profile$ = signal<GraphProfile>({});
+  private get profile(): GraphProfile { return this.profile$(); }
+
+  readonly account$ = signal<AccountInfo | null>(null);
+  private get account(): AccountInfo | null { return this.account$(); }
 
   constructor(@Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration) {
     this.msalBroadcastService.inProgress$.pipe(
       filter((status: InteractionStatus) => status === InteractionStatus.None))
       .subscribe(() => {
-        this.account.set(this.authService.instance.getActiveAccount());
+        this.account$.set(this.authService.instance.getActiveAccount());
     });
 
     this.msalBroadcastService.msalSubject$.pipe(
-      filter((message: EventMessage) => message.eventType === EventType.LOGIN_SUCCESS))
+      filter((message: EventMessage) => message.eventType === EventType.ACQUIRE_TOKEN_SUCCESS || message.eventType === EventType.LOGIN_SUCCESS))
       .subscribe((message: EventMessage) => {
+        if (!this.account)
         this.authService.instance.setActiveAccount((message.payload as AuthenticationResult).account);
-        this.account.set((message.payload as AuthenticationResult).account);
+        this.account$.set((message.payload as AuthenticationResult).account);
+        console.log(this.account);
+        console.log(this.authService.instance.getActiveAccount())
     });
   }
 
@@ -44,9 +50,11 @@ export class UserService {
   }
 
   initProfile(): void {
-    this.http.get<GraphProfile>('https://graph.microsoft.com/v1.0/me').subscribe((profile: GraphProfile) => {
-      this.profile.set(profile);
-    });
+    if (!this.profile.id) {
+      this.http.get<GraphProfile>('https://graph.microsoft.com/v1.0/me').subscribe((profile: GraphProfile) => {
+        this.profile$.set(profile);
+      });
+    }
   }
 
 }

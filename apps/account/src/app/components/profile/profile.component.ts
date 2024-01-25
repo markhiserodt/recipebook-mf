@@ -10,8 +10,8 @@ import { GraphProfile, UserService } from '@recipebook-mf/services';
 }) 
 export class ProfileComponent implements OnInit {
   private userService = inject(UserService);
-  private profile$ = this.userService.profile.asReadonly();
 
+  private profile$ = this.userService.profile$.asReadonly();
   get profile(): GraphProfile { return this.profile$(); }
 
   ngOnInit(): void {

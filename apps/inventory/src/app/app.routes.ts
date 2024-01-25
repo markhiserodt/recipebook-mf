@@ -8,7 +8,7 @@ export const appRoutes: Route[] = [
     children: [
       { path: 'items', component: InventoryComponent },
       { path: 'schedule', component: ScheduleComponent },
-      { path: '', redirectTo: 'items', pathMatch: 'full' },
+      { path: '**', redirectTo: 'items', pathMatch: 'full' },
     ]
   }
 ];

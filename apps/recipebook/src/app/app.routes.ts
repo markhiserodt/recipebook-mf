@@ -7,6 +7,7 @@ import { FoodGroupComponent } from './components/food-group/food-group.component
 import { RecipeDetailComponent } from './components/recipe/recipe-detail/recipe-detail.component';
 import { RecipeDetailResolver } from './resolvers/recipe.resolver';
 import { FoodResolver } from './resolvers/food.resolver';
+import { inventoryGuardFn } from './guards/inventory.guard';
 
 export const appRoutes: Route[] = [
   { path: '', component: HomeComponent },
@@ -16,7 +17,7 @@ export const appRoutes: Route[] = [
   {
     path: 'recipes/:id', component: RecipeDetailComponent, resolve: { recipe: RecipeDetailResolver },
   },
-  { path: 'inventory', loadChildren: () => loadRemoteModule('inventory', './Routes').then((m) => m.appRoutes)},
+  { path: 'inventory', loadChildren: () => loadRemoteModule('inventory', './Routes').then((m) => m.appRoutes), canActivate: [inventoryGuardFn]},
   { path: 'account', loadChildren: () => loadRemoteModule('account', './Routes').then((m) => m.appRoutes)},
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

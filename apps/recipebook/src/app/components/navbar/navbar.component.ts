@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { AccountInfo } from '@azure/msal-browser';
-import { UserService } from '@recipebook-mf/services';
+import { FeatureService, UserService } from '@recipebook-mf/services';
+import { Features } from '../../enumerations/feature.enum';
 
 @Component({
   selector: 'rb-navbar',
@@ -14,10 +15,14 @@ import { UserService } from '@recipebook-mf/services';
 export class NavbarComponent implements OnInit {
   private router = inject(Router);
   private userService = inject(UserService);
+  private featureService = inject(FeatureService);
   private changeDetectorRef = inject(ChangeDetectorRef);
 
-  private account$ = this.userService.account.asReadonly();
+  private account$ = this.userService.account$.asReadonly();
   get account(): AccountInfo | null { return this.account$(); }
+
+  private feature$ = this.featureService.features$.asReadonly();
+  get feature() { return this.feature$(); }
 
   route = '';
 
@@ -39,6 +44,11 @@ export class NavbarComponent implements OnInit {
 
   login(): void {
     this.userService.login();
+  }
+
+  isInventoryFeatureEnabled(): boolean {
+    const feature = this.feature.find(feature => feature.name?.toLowerCase() === Features.Inventory.toLowerCase());
+    return feature?.flag ?? false;
   }
 
 }
