@@ -1,5 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
-.customClass {
+.inventory-module {
   background-color: beige;
   border: red 1px solid
+}
+
+.account-module {
+  background-color: lightpink;
+  border: blue 1px solid;
+}
+
+.fab {
+  display: inline-block;
+  border-radius: 50%;
+  font-size: 2em;
+  line-height: 2em;
+  min-width: 2em;
+  width: 2em;
+  min-height: 2em;
+  height: 2em;
+  text-align: center;
+}
+
+.fab-sm {
+  display: inline-block;
+  border-radius: 50%;
+  font-size: 1.2em;
+  line-height: 2em;
+  min-width: 2em;
+  width: 2em;
+  min-height: 2em;
+  height: 2em;
+  text-align: center;
+  background-color: var(--bs-primary);
+  color: white;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

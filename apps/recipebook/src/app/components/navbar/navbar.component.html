@@ -10,7 +10,19 @@
         <a routerLink="/recipes" [ngClass]="route.indexOf('/recipes') > -1 ? 'active' : ''" class="nav-link cursor-pointer">Recipes</a>
         <a routerLink="/foods" [ngClass]="route.indexOf('/foods') > -1 ? 'active' : ''" class="nav-link cursor-pointer">Ingredients</a>
         <a routerLink="/foodGroups" [ngClass]="route.indexOf('/foodGroups') > -1 ? 'active' : ''" class="nav-link cursor-pointer">Food Groups</a>
-        <a routerLink="/inventory" [ngClass]="route.indexOf('/inventory') > -1 ? 'active' : ''" class="nav-link cursor-pointer">Inventory</a>
+        @if (isInventoryFeatureEnabled()) {
+          <a routerLink="/inventory" [ngClass]="route.indexOf('/inventory') > -1 ? 'active' : ''" class="nav-link cursor-pointer">Inventory</a>
+        }
+      </div>
+      <div class="d-flex flex-fill justify-content-end">
+        @if (account && account.name) {
+          <div class="d-flex align-items-center justify-content-center">
+            <label class="cursor-pointer pe-2">Hello, {{account.name}}</label>
+            <label class="fab-sm cursor-pointer" routerLink="/account/profile">{{account.name[0].toUpperCase()}}</label>
+          </div>
+        } @else {
+          <button class="btn btn-primary" (click)="login()">Login</button>
+        }
       </div>
     </div>
   </div>

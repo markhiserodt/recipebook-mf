@@ -1,0 +1,23 @@
+<h3>Feature Flags</h3>
+
+<div class="d-flex m-3">
+  <div style="width: 18em;">
+    <label for="featureName" class="form-label">Feature Name</label>
+    <input [(ngModel)]="featureName" class="form-control" id="featureName" type="text" placeholder="Feature name ...">
+  </div>
+
+  <div class="d-flex align-items-end ms-3">
+    <button class="btn btn-primary" (click)="addFeature(featureName)">Add Feature</button>
+  </div>
+</div>
+
+<ul class="list-group">
+  @for (feature of features; track feature.id) {
+    <li class="list-group-item">
+      <div class="form-check form-switch">
+        <input (change)="updateFeature(feature, !feature.flag)" class="form-check-input cursor-pointer" type="checkbox" role="switch" id="flexSwitchCheckDefault" [checked]="feature.flag">
+        <label class="form-check-label" for="flexSwitchCheckDefault">{{feature.name}}</label>
+      </div>
+    </li>
+  }
+</ul>

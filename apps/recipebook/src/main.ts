@@ -1,8 +1,8 @@
 import { setRemoteDefinitions } from '@nx/angular/mf';
 import { environment } from './environments/environment';
 
-const moduleFederationManifest = environment.production 
-  ? '/assets/module-federation.prod.manifest.json' : 
+const moduleFederationManifest = environment.production ?
+    '/assets/module-federation.prod.manifest.json' : 
     '/assets/module-federation.manifest.json'
 
 fetch(moduleFederationManifest)

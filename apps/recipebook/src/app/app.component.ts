@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { Observable } from 'rxjs';
+import { MsalModule } from '@azure/msal-angular';
 
 @Component({
   selector: 'rb-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent],
+  imports: [CommonModule, RouterOutlet, NavbarComponent, MsalModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
