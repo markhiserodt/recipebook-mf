@@ -12,5 +12,5 @@ export class ProfileComponent {
   private userService = inject(UserService);
   private profile$ = this.userService.profile.asReadonly();
 
-  get profile(): GraphProfile | null { return this.profile$(); }
+  get profile(): GraphProfile { return this.profile$(); }
 }
