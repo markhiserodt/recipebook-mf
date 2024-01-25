@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
 
   account = this.userService.account.asReadonly();
   profile = this.userService.profile.asReadonly();
+  
   route = '';
 
   ngOnInit(): void {

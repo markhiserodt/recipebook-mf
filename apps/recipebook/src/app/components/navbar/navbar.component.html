@@ -15,8 +15,7 @@
       <div class="d-flex flex-fill justify-content-end">
         @if (account()) {
           <div class="d-flex align-items-center justify-content-center">
-            <label class="cursor-pointer pe-2">Hello, {{profile()?.displayName}}</label>
-            <!-- <label class="fab-sm cursor-pointer" (click)="navigateToProfile()">{{account()?.username![0].toUpperCase()}}</label> -->
+            <label class="cursor-pointer pe-2">Hello, {{profile().displayName}}</label>
             <label class="fab-sm cursor-pointer" routerLink="/account/profile">{{account()?.username![0].toUpperCase()}}</label>
           </div>
         } @else {
