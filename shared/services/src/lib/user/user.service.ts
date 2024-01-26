@@ -32,8 +32,6 @@ export class UserService {
         if (!this.account)
         this.authService.instance.setActiveAccount((message.payload as AuthenticationResult).account);
         this.account$.set((message.payload as AuthenticationResult).account);
-        console.log(this.account);
-        console.log(this.authService.instance.getActiveAccount())
     });
   }
 
