@@ -3,7 +3,8 @@ name: Deploy Recipebook MF
 on:
   push:
     branches:
-      - main, feature/recipebook
+      - main
+      - feature/recipebook
 
 jobs:
   build_and_deploy:
