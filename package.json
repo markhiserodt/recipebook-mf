@@ -3,7 +3,29 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve recipebook --devRemotes=inventory --devRemotes=account"
+    "start": "nx serve recipebook --devRemotes=inventory --devRemotes=account",
+
+    "build": "nx build recipebook && nx build inventory && nx build account",
+    "recipebook:build:prod": "nx build recipebook --prod",
+    "inventory:build:prod": "nx build inventory --prod",
+    "account:build:prod": "nx build account --prod",
+
+    "lint": "nx lint recipebook && nx lint inventory && nx lint account",
+    "recipebook:lint": "nx lint recipebook",
+    "inventory:lint": "nx lint inventory",
+    "account:lint": "nx lint account",
+
+    "test": "nx test recipebook && nx test inventory && nx test account",
+    "recipebook:test:prod": "nx test recipebook --codeCoverage",
+    "inventory:test:prod": "nx test inventory --codeCoverage",
+    "account:test:prod": "nx test account --codeCoverage",
+
+    "e2e": "nx e2e recipebook-e2e && nx e2e inventory-e2e && nx e2e account-e2e",
+    "recipebook:e2e:prod": "nx e2e recipebook-e2e --watch=false",
+    "inventory:e2e:prod": "nx e2e inventory-e2e --watch=false",
+    "account:e2e:prod": "nx e2e account-e2e --watch=false",
+
+    "coffee": "npm run build && npm run lint && npm run test && npm run e2e"
   },
   "private": true,
   "dependencies": {
