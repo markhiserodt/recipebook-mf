@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@recipebook-mf/services": ["shared/services/src/index.ts"],
+      "@recipebook/*": ["apps/recipebook/src/*"],
       "account/Routes": ["apps/account/src/app/app.routes.ts"],
       "inventory/Routes": ["apps/inventory/src/app/app.routes.ts"]
     }

@@ -44,6 +44,10 @@
             {
               "replace": "apps/recipebook/src/environments/environment.ts",
               "with": "apps/recipebook/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "shared/services/src/environments/environment.ts",
+              "with": "shared/services/src/environments/environment.prod.ts"
             }
           ],
           "outputHashing": "all"
