@@ -13,6 +13,10 @@ import {
 
 import { environment } from '../../environments/environment';
 
+const isIE =
+  window.navigator.userAgent.indexOf("MSIE ") > -1 ||
+  window.navigator.userAgent.indexOf("Trident/") > -1;
+
 export class MsalFactory {
   public static MSALInstanceFactory(): IPublicClientApplication {
       return new PublicClientApplication({
@@ -23,7 +27,8 @@ export class MsalFactory {
               postLogoutRedirectUri: environment.msal.redirect
           },
           cache: {
-              cacheLocation: BrowserCacheLocation.LocalStorage
+              cacheLocation: BrowserCacheLocation.LocalStorage,
+              storeAuthStateInCookie: isIE
           },
           system: {
               allowNativeBroker: false,

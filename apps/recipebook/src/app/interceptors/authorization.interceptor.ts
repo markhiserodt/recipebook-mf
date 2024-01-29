@@ -31,18 +31,16 @@ export class AuthorizationInterceptor implements HttpInterceptor {
   }
 
   private setAuthorizationHeader(request: HttpRequest<any>): HttpRequest<any> {
-    if (request.url.indexOf('pkc-6vz38.westus2.azure.confluent.cloud') > -1) {
-      const username = 'OS3YBHNI4QT2MLWK';
-      const password = 'fUtJIDBpF71udsVIE9fQlNu4XT89Oj0NLesddXDNFL2mEfOszwpKhQrCsfYeEACG';
-      // const credentials = Buffer.from(`${username}:${password}`, 'base64');
-      // const credentials = btoa(`${username}:${password}`);
-      const credentials = `${username}:${password}`;
-      request =  request.clone({
-        setHeaders: {
-          'Authorization': `Basic ${credentials}`
-        },
-      });
+    const jwt = localStorage.getItem('1a3b16f2-3c52-4fd6-8423-6e84c4553b1d.cf36141c-ddd7-45a7-b073-111f66d0b30c-login.windows.net-accesstoken-f6b112f2-375a-41c0-b27f-aae04c58a072-f66b9a1c-1fb5-4639-822e-f61383bf4e2b-user.read profile openid email--')
+    if (!jwt) {
+      return request;
     }
+    const json = JSON.parse(jwt);
+    request =  request.clone({
+      setHeaders: {
+        'Authorization': `Bearer ${json.secret}`
+      },
+    });
     return request;
   }
 }
