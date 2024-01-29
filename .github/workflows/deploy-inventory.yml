@@ -1,4 +1,4 @@
-name: Deploy Inventory MF
+name: Deploy Inventory
 
 on:
   push:

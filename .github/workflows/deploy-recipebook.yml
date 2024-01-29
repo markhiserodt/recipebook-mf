@@ -1,4 +1,4 @@
-name: Deploy Recipebook MF
+name: Deploy Recipebook
 
 on:
   push:

@@ -1,9 +1,6 @@
-name: Build Recipebook MF
+name: Build Recipebook
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main

@@ -1,4 +1,4 @@
-name: Deploy Account MF
+name: Deploy Account
 
 on:
   push:
