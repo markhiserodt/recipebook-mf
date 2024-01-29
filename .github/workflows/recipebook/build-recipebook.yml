@@ -1,13 +1,10 @@
-name: Build Account MF
+name: Build Recipebook
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
-      - feature/account
+      - feature/recipebook
 
 jobs:
   build:
@@ -35,13 +32,13 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run account:build:prod
+        run: npm run recipebook:build:prod
 
       - name: Lint
-        run: npm run account:lint
+        run: npm run recipebook:lint
 
       - name: Test
-        run: npm run account:test:prod
+        run: npm run recipebook:test:prod
 
       - name: e2e
-        run: npm run account:e2e:prod
+        run: npm run recipebook:e2e:prod

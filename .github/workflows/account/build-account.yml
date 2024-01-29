@@ -1,13 +1,10 @@
-name: Build Inventory MF
+name: Build Account
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
-      - feature/inventory
+      - feature/account
 
 jobs:
   build:
@@ -35,13 +32,13 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run inventory:build:prod
+        run: npm run account:build:prod
 
       - name: Lint
-        run: npm run inventory:lint
+        run: npm run account:lint
 
       - name: Test
-        run: npm run inventory:test:prod
+        run: npm run account:test:prod
 
       - name: e2e
-        run: npm run inventory:e2e:prod
+        run: npm run account:e2e:prod
