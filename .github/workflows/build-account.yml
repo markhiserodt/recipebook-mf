@@ -1,0 +1,47 @@
+name: Build Account MF
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - feature/account
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '.'
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        id: cache-npm
+        env:
+          cache-name: node-modules-cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
+            ${{ runner.os }}-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run account:build:prod
+
+      - name: Lint
+        run: npm run account:lint
+
+      - name: Test
+        run: npm run account:test:prod
+
+      - name: e2e
+        run: npm run account:e2e:prod
