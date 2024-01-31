@@ -24,6 +24,9 @@ export class UserService {
       filter((status: InteractionStatus) => status === InteractionStatus.None))
       .subscribe(() => {
         this.account$.set(this.authService.instance.getActiveAccount());
+        this.authService.instance.acquireTokenSilent({scopes: ['user.read']}).then((authenticationResult: AuthenticationResult) => {
+          localStorage.setItem('idToken', authenticationResult.idToken);
+        });
     });
 
     this.msalBroadcastService.msalSubject$.pipe(
@@ -32,6 +35,7 @@ export class UserService {
         if (!this.account)
         this.authService.instance.setActiveAccount((message.payload as AuthenticationResult).account);
         this.account$.set((message.payload as AuthenticationResult).account);
+        localStorage.setItem('idToken', (message.payload as AuthenticationResult).idToken);
     });
   }
 
@@ -44,6 +48,7 @@ export class UserService {
   }
 
   logout(): void {
+    localStorage.removeItem('idToken');
     this.authService.logoutRedirect();
   }
 
