@@ -1,0 +1,87 @@
+<h4>Home Insurance Form</h4>
+
+<div class="row">
+  <div class="col-6">
+    <form [formGroup]="form">
+      <div class="mb-3" style="width: 24em;">
+        <label for="caseId" class="form-label">Case ID</label>
+        <input formControlName="caseId" type="text" class="form-control" id="caseId">
+      </div>
+
+      <div class="mb-3" style="width: 24em;">
+        <label for="name" class="form-label">Name</label>
+        <input formControlName="name" type="text" class="form-control" id="name" placeholder="John Smith">
+      </div>
+      
+      <div class="mb-3" style="width: 24em;">
+        <label for="email" class="form-label">Email address</label>
+        <input formControlName="email" type="text" class="form-control" id="email" placeholder="name@example.com">
+      </div>
+
+      <div class="mb-3" style="width: 24em;">
+        <label for="address" class="form-label">Address</label>
+        <input formControlName="address" type="text" class="form-control" id="address">
+      </div>
+
+      <div class="d-flex" style="width: 24em;">
+        <button (click)="submit()" class="btn btn-primary" [disabled]="operation === operations.Inquiry">Submit</button>
+        @if (operation === operations.Correct) {
+          <div class="d-flex align-items-center ms-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill text-danger" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+            </svg>
+            <label class="ms-2">Error Correct Mode</label>
+          </div>
+        }
+      </div>
+    </form>
+
+  </div>
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Form Options</h5>
+
+        <div class="d-flex align-items-center" style="width: 24em;">
+          <div class="mb-3" style="width: 12em;">
+            <label for="date" class="form-label">Effective Date</label>
+            <input type="text" class="form-control" id="date">
+          </div>
+    
+          <div class="ms-3">
+            <button class="btn btn-primary">Search</button>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center">
+          <!-- <button type="button" (click)="errorCorrect = !errorCorrect" class="btn btn-outline-danger btn-sm d-flex align-items-center" [ngClass]="errorCorrect ? 'btn-hover' : ''">
+            Error Correct Mode
+          </button> -->
+
+          <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input (change)="changeOperationMode(operations.Modify)" type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" [checked]="operation === 'm'">
+            <label class="btn btn-outline-primary" for="btnradio1">Update</label>
+          
+            <input (change)="changeOperationMode(operations.Inquiry)" type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" [checked]="operation === 'i'">
+            <label class="btn btn-outline-secondary" for="btnradio2">Inquiry</label>
+          
+            <input (change)="changeOperationMode(operations.Correct)" type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" [checked]="operation === 'c'">
+            <label class="btn btn-outline-danger" for="btnradio3">Error Correct</label>
+          </div>
+        </div>
+
+        <div class="my-3">
+          <label class="my-1">Form changes: </label>
+          <ul class="list-group">
+            @for (key of formKeys; track $index) {
+              @if (form.get(key)?.dirty) {
+                <li class="list-group-item">{{key}} - {{form.get(key)?.value}}</li>
+              }
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

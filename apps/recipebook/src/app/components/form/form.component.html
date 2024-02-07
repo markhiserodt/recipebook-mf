@@ -1,0 +1,14 @@
+<h3>Forms</h3>
+<ul class="nav nav-pills justify-content-center">
+  <li class="nav-item">
+    <a routerLink='./home' class="nav-link" [ngClass]="route.indexOf('forms/home') > -1 ? 'active' : ''">Home</a>
+  </li>
+  <li class="nav-item">
+    <a routerLink='./auto' class="nav-link" [ngClass]="route.indexOf('forms/auto') > -1 ? 'active' : ''">Auto</a>
+  </li>
+  <li class="nav-item">
+    <a routerLink='./health' class="nav-link" [ngClass]="route.indexOf('forms/health') > -1 ? 'active' : ''">Health</a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>

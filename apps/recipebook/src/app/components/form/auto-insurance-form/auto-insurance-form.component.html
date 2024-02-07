@@ -1,0 +1,22 @@
+<h4>Auto Insurance Form</h4>
+
+<form [formGroup]="form">
+
+  <div class="mb-3" style="width: 24em;">
+    <label for="name" class="form-label">Name</label>
+    <input formControlName="name" type="text" class="form-control" id="name" placeholder="John Smith">
+  </div>
+  
+  <div class="mb-3" style="width: 24em;">
+    <label for="email" class="form-label">Email address</label>
+    <input formControlName="email" type="text" class="form-control" id="email" placeholder="name@example.com">
+  </div>
+
+  <div class="mb-3" style="width: 24em;">
+    <label for="car" class="form-label">Car</label>
+    <input formControlName="car" type="text" class="form-control" id="car">
+  </div>
+
+  <button (click)="submit()" class="btn btn-primary">Submit</button>
+
+</form>

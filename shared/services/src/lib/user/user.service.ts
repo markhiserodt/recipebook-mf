@@ -24,9 +24,11 @@ export class UserService {
       filter((status: InteractionStatus) => status === InteractionStatus.None))
       .subscribe(() => {
         this.account$.set(this.authService.instance.getActiveAccount());
-        this.authService.instance.acquireTokenSilent({scopes: ['user.read']}).then((authenticationResult: AuthenticationResult) => {
-          localStorage.setItem('idToken', authenticationResult.idToken);
-        });
+        if (this.account) {
+          this.authService.instance.acquireTokenSilent({scopes: ['user.read']}).then((authenticationResult: AuthenticationResult) => {
+            localStorage.setItem('idToken', authenticationResult.idToken);
+          });
+        }
     });
 
     this.msalBroadcastService.msalSubject$.pipe(
